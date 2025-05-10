@@ -15,8 +15,7 @@ export default function ProtectedLayout() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ title: 'Feed' }} />
-      <Stack.Screen name="post/[id]" options={{ title: 'Post' }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
 }

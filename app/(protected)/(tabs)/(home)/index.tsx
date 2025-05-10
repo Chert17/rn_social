@@ -15,7 +15,8 @@ export default function Home() {
           data={dummyPosts}
           className="bg-white"
           renderItem={({ item }) => (
-            <Link href={{ pathname: '/(protected)/post/[id]', params: { id: item.id } }}>
+            <Link
+              href={{ pathname: '/(protected)/(tabs)/(home)/post/[id]', params: { id: item.id } }}>
               <FeedPostItem post={item} />
             </Link>
           )}
