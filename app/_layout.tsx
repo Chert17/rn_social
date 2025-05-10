@@ -1,7 +1,25 @@
 import '../global.css';
 
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
+
+import { AuthProvider } from '@/providers';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
+
+const CustomTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white',
+    primary: '#0a0a0a',
+  },
+};
 
 export default function Layout() {
-  return <Stack />;
+  return (
+    <AuthProvider>
+      <ThemeProvider value={CustomTheme}>
+        <Slot />
+      </ThemeProvider>
+    </AuthProvider>
+  );
 }
