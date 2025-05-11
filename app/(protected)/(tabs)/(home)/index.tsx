@@ -1,13 +1,11 @@
 import { FeedPostItem } from '@/components/FeedPostItem';
-import { Button, FlatList, View } from 'react-native';
+import { FlatList, Pressable, View } from 'react-native';
 
 import { dummyPosts } from '@/mock';
-import { useAuth } from '@/providers';
+import { AntDesign } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 
 export default function Home() {
-  const { signOut } = useAuth();
-
   return (
     <>
       <View className="flex-1 justify-center">
@@ -21,8 +19,13 @@ export default function Home() {
             </Link>
           )}
           keyExtractor={(item) => item.id.toString()}
-          ListFooterComponent={<Button title="SignOut" onPress={signOut} />}
         />
+
+        <Link href="/new" asChild>
+          <Pressable className="absolute bottom-5 right-5 h-[60px] w-[60px] items-center justify-center rounded-full bg-[#007AFF] shadow-lg">
+            <AntDesign name="plus" size={24} color="white" />
+          </Pressable>
+        </Link>
       </View>
     </>
   );

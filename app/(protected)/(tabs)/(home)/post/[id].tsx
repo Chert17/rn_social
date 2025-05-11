@@ -1,12 +1,16 @@
+import { FeedPostItem } from '@/components/FeedPostItem';
+import { dummyPosts } from '@/mock';
 import { useLocalSearchParams } from 'expo-router';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 export default function DetailPost() {
   const { id } = useLocalSearchParams();
 
-  return (
-    <View>
-      <Text>{id}</Text>
-    </View>
-  );
+  const post = dummyPosts.find((i) => i.id === +id);
+
+  if (!post) {
+    return <Text>Post Not Found</Text>;
+  }
+
+  return <FeedPostItem post={post} />;
 }
