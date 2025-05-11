@@ -1,16 +1,30 @@
 import { FeedPostItem } from '@/components/FeedPostItem';
 import { FlatList, Pressable, View } from 'react-native';
 
-import { dummyPosts } from '@/mock';
+import { Post } from '@/types';
 import { AntDesign } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/posts');
+
+      const data = await response.json();
+      setPosts(data.posts);
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <>
       <View className="flex-1 justify-center">
         <FlatList
-          data={dummyPosts}
+          data={posts}
           className="bg-white"
           renderItem={({ item }) => (
             <Link
